@@ -1,0 +1,47 @@
+name: Deploy theme_llslim (Moodle Theme Module)
+
+on:
+  push:
+    branches:
+      - main
+      - moodle-5.2
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Environment Variables
+        run: |
+          echo "Environment: DEVELOPMENT"
+          echo "SSH_HOST=${{ secrets.DEV_SSH_HOST }}" >> $GITHUB_ENV
+          echo "SSH_USER=${{ secrets.DEV_SSH_USER }}" >> $GITHUB_ENV
+          echo "DEPLOY_PATH=${{ secrets.DEV_DEPLOY_PATH }}" >> $GITHUB_ENV
+          echo "SSH_KEY=${{ secrets.DEV_SSH_PRIVATE_KEY || secrets.SSH_PRIVATE_KEY }}" >> $GITHUB_ENV
+
+      - name: Setup SSH & Known Hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Deploy theme_llslim Module via rsync
+        run: |
+          echo "Deploying theme_llslim submodule to $SSH_HOST:$DEPLOY_PATH/theme/llslim/..."
+          rsync -rtvzp --delete -e "ssh -o StrictHostKeyChecking=accept-new" ./ $SSH_USER@$SSH_HOST:$DEPLOY_PATH/theme/llslim/
+
+      - name: Execute Remote Moodle Updates
+        run: |
+          echo "Purging Moodle site caches & forcing JS/theme revision increments..."
+          ssh $SSH_USER@$SSH_HOST "php $DEPLOY_PATH/admin/cli/cfg.php --name=jsrev --set=-1"
+          ssh $SSH_USER@$SSH_HOST "php $DEPLOY_PATH/admin/cli/cfg.php --name=themerev --set=-1"
+          ssh $SSH_USER@$SSH_HOST "php $DEPLOY_PATH/admin/cli/purge_caches.php"
+
+          echo "theme_llslim deployment complete!"
