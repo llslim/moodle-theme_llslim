@@ -413,7 +413,7 @@ body.pagelayout-login .login-layout-stat {
 /* Login Page Left Layout Background (presentation.jpg - 1440x2048) */
 body.pagelayout-login .login-layout-left,
 .login-layout-left {
-    background: url([[pix:theme|presentation]]) no-repeat center center / cover !important;
+    background: url([[pix:theme|People_using_communication_devices_202608091927]]) no-repeat center center / cover !important;
     color: #ffffff !important;
 }
 
