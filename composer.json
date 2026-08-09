@@ -1,0 +1,9 @@
+{
+    "name": "llslim/moodle-theme_llslim",
+    "description": "Custom Moodle theme for AAC-RERC Learn",
+    "type": "moodle-theme",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "moodle/composer-installer": "*"
+    }
+}
