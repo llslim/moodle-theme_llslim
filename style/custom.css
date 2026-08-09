@@ -410,10 +410,10 @@ body.pagelayout-login .login-layout-stat {
     display: none !important;
 }
 
-/* Login Page Left Layout Background (presentation.jpg - 1440x2048) */
+/* Login Page Left Layout Background (login_page_bg.png) */
 body.pagelayout-login .login-layout-left,
 .login-layout-left {
-    background: url([[pix:theme|presentation]]) no-repeat center center / cover !important;
+    background: url([[pix:theme|login_page_bg]]) no-repeat center center / cover !important;
     color: #ffffff !important;
 }
 
