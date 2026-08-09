@@ -6,7 +6,7 @@ This log documents the commit history on the `dev` branch, mapping each update t
 
 | Commit Hash | Version | Commit Message / Description | Version Type |
 | :--- | :--- | :--- | :--- |
-| `1e1ec2a` | **v1.0.4** | design: set People_using_communication_devices as login background | Revision (Fix) |
+| `fd45ccf` | **v1.0.4** | design: add PNG background and custom favicon assets | Revision (Fix) |
 | `7eb54bc` | **v1.0.3** | design: update login page background with correct user-attached image | Revision (Fix) |
 | `1feafcc` | **v1.0.2** | ci: fix SSH key multiline env format for deployment | Revision (Fix) |
 | `e832203` | **v1.0.1** | design: update login page background image (presentation.jpg) | Revision (Fix) |
