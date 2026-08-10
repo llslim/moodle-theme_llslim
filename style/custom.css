@@ -423,7 +423,7 @@ body.pagelayout-login,
 }
 
 /* Inject Dark Logo above the login heading */
-body.pagelayout-login .card-body::before {
+body.pagelayout-login .login-container .loginform::before {
     content: "";
     display: block;
     background: url([[pix:theme|learn_logo.dark]]) no-repeat center center;
