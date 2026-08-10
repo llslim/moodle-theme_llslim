@@ -1,4 +1,4 @@
-name: Deploy theme_llslim (Moodle Theme Module)
+name: theme_llslim
 
 on:
   push:
