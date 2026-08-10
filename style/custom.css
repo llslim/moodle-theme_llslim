@@ -415,6 +415,7 @@ body.pagelayout-login .login-layout-left,
 .login-layout-left {
     background: url([[pix:theme|People_using_communication_devices_202608091927]]) no-repeat center center / cover !important;
     color: #ffffff !important;
+    height: 100vh !important;
 }
 
 body.pagelayout-login,
